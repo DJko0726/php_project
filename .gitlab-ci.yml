@@ -1,0 +1,35 @@
+stages:
+  - build
+  - deploy
+
+build_testing:
+  stage: build
+  tags:
+    - vm-koko-project
+  script:
+    - cd /home/koko/project
+    - git pull
+    - docker-compose -f docker-compose-testing.yml build
+  only:
+    - main
+
+deploy_testing:
+  stage: deploy
+  tags:
+    - vm-koko-project
+  script:
+    - cd /home/koko/project
+    - git pull
+    - docker-compose -f docker-compose-testing.yml kill
+    - ELASTIC_PASSWORD=123456 docker-compose -f docker-compose-testing.yml up -d
+  only:
+    - main
+
+migrate_db_testing:
+  stage: deploy
+  tags:
+    - vm-koko-project
+  script:
+    - docker exec backend /var/www/html/backend/vendor/bin/phinx migrate -c /var/www/html/backend/phinx.yml -e testing
+  only:
+    - main

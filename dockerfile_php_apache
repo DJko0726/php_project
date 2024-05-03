@@ -1,0 +1,43 @@
+FROM php:8.2-apache as build-main-stage
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+
+RUN apt-get update -y && \
+    apt upgrade -y && \
+    apt-get install -y \
+    libzip-dev \
+    unzip \
+    git && \
+    docker-php-ext-install zip && \
+    pecl install xdebug && \
+    docker-php-ext-enable xdebug
+
+RUN  apt-get install -y libjpeg-dev libfreetype6-dev
+RUN  docker-php-ext-configure gd --with-freetype --with-jpeg
+RUN  install-php-extensions zip gd mysqli pdo_mysql pgsql pdo_pgsql
+
+FROM build-main-stage
+ARG deploy_env
+COPY /backend/ /var/www/html
+RUN cp /var/www/html/.env.$deploy_env /var/www/html/.env && cp /var/www/html/phinx.yml.example /var/www/html/phinx.yml
+RUN mkdir /bp_log /var/www/storages
+
+WORKDIR /etc/apache2/sites-available
+COPY /docker-conf/service_settings/sites-available /etc/apache2/sites-available
+RUN a2ensite 000-default.conf
+
+RUN  a2enmod rewrite && \
+    a2enmod proxy && \
+    a2enmod proxy_http
+
+FROM build-main-stage as build-vendor-stage
+WORKDIR /var/www/html
+COPY /backend/app /var/www/html/app
+COPY /backend/composer* /var/www/html
+RUN composer install
+
+
+RUN service apache2 restart
+
+EXPOSE 80
+EXPOSE 8080
