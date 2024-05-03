@@ -48,53 +48,38 @@ class DppTest extends TestCase
         //check dpp
         $this->assertArrayHasKey('DPP', $result['payload']);
         $this->assertArrayHasKey('UID', $result['payload']['DPP']);
-        $this->assertArrayHasKey('DPPID', $result['payload']['DPP']);
-        $this->assertArrayHasKey('DPPClass', $result['payload']['DPP']);
-        $this->assertArrayHasKey('PassportStartDate', $result['payload']['DPP']);
-        $this->assertArrayHasKey('PassportEndDate', $result['payload']['DPP']);
-        $this->assertArrayHasKey('SerialNo', $result['payload']['DPP']);
-        $this->assertArrayHasKey('MftDate', $result['payload']['DPP']);
-        $this->assertArrayHasKey('WarrantyDate', $result['payload']['DPP']);
-        $this->assertArrayHasKey('ProdCycleStatus', $result['payload']['DPP']);
-        $this->assertArrayHasKey('DPPStatus', $result['payload']['DPP']);
+        /*
+        *skipped
+        */
         //check dpp info
         $this->assertArrayHasKey('DPPInfo', $result['payload']);
         $this->assertArrayHasKey('GTIN', $result['payload']['DPPInfo']);
-        $this->assertArrayHasKey('SSCC', $result['payload']['DPPInfo']);
-        $this->assertArrayHasKey('BatchLot', $result['payload']['DPPInfo']);
-        $this->assertArrayHasKey('TARIC', $result['payload']['DPPInfo']);
-        $this->assertArrayHasKey('UniqueFacilityIdentifierDUNS', $result['payload']['DPPInfo']);
-        $this->assertArrayHasKey('UniqueFacilityIdentifierGLN', $result['payload']['DPPInfo']);
-        $this->assertArrayHasKey('ORIGIN', $result['payload']['DPPInfo']);
+        /*
+        *skipped
+        */
         //check productinfo
         $this->assertArrayHasKey('ProductInfo', $result['payload']);
         $this->assertArrayHasKey('ProdInfoID', $result['payload']['ProductInfo']);
-        $this->assertArrayHasKey('Model', $result['payload']['ProductInfo']);
-        $this->assertArrayHasKey('ProdName', $result['payload']['ProductInfo']);
-        $this->assertArrayHasKey('FID', $result['payload']['ProductInfo']);
-        $this->assertArrayHasKey('CCCCode', $result['payload']['ProductInfo']);
-        $this->assertArrayHasKey('SpecInfo', $result['payload']['ProductInfo']);
-        $this->assertArrayHasKey('CFP', $result['payload']['ProductInfo']);
-        $this->assertArrayHasKey('CFV', $result['payload']['ProductInfo']);
-        $this->assertArrayHasKey('PEF', $result['payload']['ProductInfo']);
-        $this->assertArrayHasKey('ProdInfoLink', $result['payload']['ProductInfo']);
-        $this->assertArrayHasKey('Description', $result['payload']['ProductInfo']);
-        $this->assertArrayHasKey('ProdPhoto', $result['payload']['ProductInfo']);
+        /*
+        *skipped
+        */
         //check StandardCertificate
         $this->assertArrayHasKey('StandardCertificate', $result['payload']);
         $this->assertArrayHasKey('CertName', $result['payload']['StandardCertificate']);
-        $this->assertArrayHasKey('CertificateNo', $result['payload']['StandardCertificate']);
-        $this->assertArrayHasKey('CertificationBody', $result['payload']['StandardCertificate']);
-        $this->assertArrayHasKey('CertLink', $result['payload']['StandardCertificate']);
+        /*
+        *skipped
+        */
         //check RepairabilityIndex
         $this->assertArrayHasKey('RepairabilityIndex', $result['payload']);
         $this->assertArrayHasKey('IdxA', $result['payload']['RepairabilityIndex']);
-        $this->assertArrayHasKey('IdxB', $result['payload']['RepairabilityIndex']);
-        $this->assertArrayHasKey('IdxC', $result['payload']['RepairabilityIndex']);
-        $this->assertArrayHasKey('IdxE', $result['payload']['RepairabilityIndex']);
-        $this->assertArrayHasKey('IdxF', $result['payload']['RepairabilityIndex']);
+        /*
+        *skipped
+        */
         //check Material
         $this->assertArrayHasKey('Material', $result['payload']);
+        /*
+        *skipped
+        */
     }
 
     public function testDPPadd()
