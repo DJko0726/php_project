@@ -1,4 +1,12 @@
 REM 每日排程
+REM 取得今天的年、月、日 (自動補零)
+SET TodayYear=%date:~0,4%
+SET TodayMonthP0=%date:~5,2%
+SET TodayDayP0=%date:~8,2%
+
+REM 取得時、分、秒 、豪秒
+SET Hour=%time:~0,2%
+SET Minute=%time:~3,2%
 
 REM 排程 進行資料庫備份
 echo %TodayYear%/%TodayMonth%/%TodayDay% %Hour%:%Minute% >> schedule-postgres-backup.log
