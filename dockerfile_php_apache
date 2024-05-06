@@ -20,11 +20,10 @@ FROM build-main-stage
 ARG deploy_env
 COPY /backend/ /var/www/html
 RUN cp /var/www/html/.env.$deploy_env /var/www/html/.env && cp /var/www/html/phinx.yml.example /var/www/html/phinx.yml
-RUN mkdir /bp_log /var/www/storages
 
-WORKDIR /etc/apache2/sites-available
-COPY /docker-conf/service_settings/sites-available /etc/apache2/sites-available
-RUN a2ensite 000-default.conf
+# WORKDIR /etc/apache2/sites-available
+# COPY /docker-conf/service_settings/sites-available /etc/apache2/sites-available
+# RUN a2ensite 000-default.conf
 
 RUN  a2enmod rewrite && \
     a2enmod proxy && \
