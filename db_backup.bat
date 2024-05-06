@@ -1,10 +1,10 @@
 REM 每日排程
-REM 取得今天的年、月、日 (自動補零)
+REM 取得今天的年、月、日 (自動補零)%date = YYYY-MM-DD
 SET TodayYear=%date:~0,4%
 SET TodayMonthP0=%date:~5,2%
 SET TodayDayP0=%date:~8,2%
 
-REM 取得時、分、秒 、豪秒
+REM 取得時、分、秒 、豪秒 %time = HH:mm:ss.ss
 SET Hour=%time:~0,2%
 SET Minute=%time:~3,2%
 
